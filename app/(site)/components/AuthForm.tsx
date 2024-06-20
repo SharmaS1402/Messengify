@@ -1,11 +1,13 @@
 'use client'
 
+import axios from "axios";
 import { useState, useCallback } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Input from "@/app/components/inputs/input";
 import Button from "@/app/components/Button";
 import AuthSocialButton from "./AuthSocialButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
+import { toast } from "react-hot-toast";
 type Variant = 'LOGIN' | 'REGISTER';
 
 function AuthForm() {
@@ -33,11 +35,13 @@ function AuthForm() {
         }
     });
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit: SubmitHandler<FieldValues> =  (data) => {
         setIsLoading(true);
 
         if(variant === 'REGISTER'){
-            // Axios register
+          axios.post('/api/register', data)
+          .catch(() => toast.error("Something went wrong!"))
+          .finally(() => setIsLoading(false))
         }
         if(variant === 'LOGIN'){
             // next-auth
@@ -67,7 +71,7 @@ function AuthForm() {
                 <form 
                 className="space-y-6"
                 onSubmit={handleSubmit(onSubmit)}>
-                    {variant === "REGISTER" && (<Input id="Name" label="Name" register={register} errors={errors} type="text"/>)}
+                    {variant === "REGISTER" && (<Input id="name" label="name" register={register} errors={errors} type="text"/>)}
 
                     <Input id="email" label="Email address" register={register} errors={errors} type="email"/>
 
