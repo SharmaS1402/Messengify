@@ -27,6 +27,7 @@ const Header : React.FC<HeaderProps> = ({
     }, [conversation]);
     return (
         <>
+        
             <ProfileDrawer
                 data = {conversation}
                 isOpen = {drawerOpen}
