@@ -13,6 +13,8 @@ export async function POST (
             image,
             conversationId
         } = body;
+
+        // console.log("Found image as : ", image);
         
         if(!currentUser?.id || !currentUser?.email) {
             return new NextResponse('Unauthorize', {status: 401});

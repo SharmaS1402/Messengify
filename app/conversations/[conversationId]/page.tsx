@@ -1,4 +1,4 @@
-import getConversationById from "@/app/actions/getConversationbyId";
+import getConversationById from "@/app/actions/getConversationById";
 import getMessages from "@/app/actions/getMessages";
 import EmptyState from "@/app/components/EmptyState";
 import Header from "./components/Header";
@@ -26,7 +26,7 @@ const conversationId = async ({params} : {params : IParams}) => {
         <div className="lg:pl-80 h-full">
             <div className="h-full flex flex-col">
                 <Header conversation= {conversation}/>
-                <Body/>
+                <Body initialMessages= {messages}/>
                 <Form/>
                 
             </div>
