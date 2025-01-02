@@ -105,7 +105,7 @@ function AuthForm() {
                 <form 
                 className="space-y-6"
                 onSubmit={handleSubmit(onSubmit)}>
-                    {variant === "REGISTER" && (<Input id="name" label="name" register={register} errors={errors} type="text"/>)}
+                    {variant === "REGISTER" && (<Input id="name" label="Name" register={register} errors={errors} type="text"/>)}
 
                     <Input id="email" label="Email address" register={register} errors={errors} type="email"/>
 

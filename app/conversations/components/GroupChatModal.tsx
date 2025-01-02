@@ -1,12 +1,15 @@
 "use client"
 
+import Input from "@/app/components/inputs/input";
 import Modal from "@/app/components/Modal";
+import  Select  from "@/app/components/inputs/Select";
 import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Button from "@/app/components/Button";
 
 interface GroupChatModalProps {
     isOpen?: boolean;
@@ -80,9 +83,47 @@ const GroupChatModal:React.FC<GroupChatModalProps> = ({
                                 flex-col
                                 gap-y-8"
                                 >
-                                    
+                                  <Input
+                                    register={register}
+                                    label="Name"
+                                    id="name"
+                                    disabled={isLoading}
+                                    required
+                                    errors={errors}
+                                    />  
+                                    <Select
+                                       disabled={isLoading}
+                                       label="Members"
+                                       options={users.map((user) => ({
+                                        value: user.id,
+                                        label: user.name
+                                       }))}
+                                       onChange={(value) => setValue('members', value, {shouldValidate:true})} 
+                                       value={members}
+                                       />
                                 </div>
                         </div>
+                    </div>
+                    <div className="
+                        mt-6
+                        flex
+                        items-center
+                        justify-end
+                        gap-x-6
+                        ">
+                            <Button
+                                disabled={isLoading}
+                                secondary
+                                onClick={onClose}
+                                type="button">
+                                Cancel
+                            </Button>
+                            <Button
+                                disabled={isLoading}
+                                type="submit">
+                                Create
+                            </Button>                            
+
                     </div>
                 </form>
         </Modal>
