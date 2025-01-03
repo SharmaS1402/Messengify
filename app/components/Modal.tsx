@@ -14,7 +14,7 @@ const Modal:React.FC<ModalProps> = ({
     onClose,
     children
 }) => {
-    console.log("Children : ", children);
+    // console.log("Children : ", children);
     return (
         <div>
             <Transition
